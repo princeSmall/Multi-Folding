@@ -6,12 +6,18 @@
 3、scroPosition 的方向是可以改的：top，middel，none，bottom
 
     NSInteger rows = [self.tableView2 numberOfRowsInSection:indexPath.row];
+    
     if (rows == 0) {
+    
         return;
+        
     }
     if (tableView==self.tableView1) {
+    
           NSIndexPath * index = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
+          
          [self.tableView2 selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionTop];
+         
     }
     
 # -
@@ -19,7 +25,9 @@
 
 2、button添加点击事件，设置title or image
 
-    HeaderFooterView * headView = [[HeaderFooterView alloc]init];
+     {
+     
+    HeaderFooterView * headView = [[HeaderFooterView alloc]init];
     headView.frame =CGRectMake(0, 0, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
     NSString *key = [NSString stringWithFormat:@"%ld",section];
     BOOL fold =[[ _foldDictionary objectForKey:key]boolValue];
@@ -31,6 +39,9 @@
     [headView.btn setTitle:[NSString stringWithFormat:@"%ld",section] forState:UIControlStateNormal];
     [headView.btn addTarget:self action:@selector(foldView:) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    }
+    
 # -
 
 1、折叠实现的方法
@@ -47,4 +58,5 @@
     [_foldDictionary setValue:foldString forKey:key];
     NSMutableIndexSet *set = [NSMutableIndexSet indexSetWithIndex:(int)sender.tag-100];
     [self.tableView2 reloadSections:set withRowAnimation:UITableViewRowAnimationFade];  
+    
 }
