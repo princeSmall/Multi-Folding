@@ -71,7 +71,12 @@
     NSString * key = [NSString stringWithFormat:@"%ld",(long)section];
     BOOL fold = [[_foldDictionary objectForKey:key]boolValue];
     if (tableView==self.tableView2) {
-         return fold? 0:self.numberArray2.count;
+        if (section < 8) {
+            return fold? 0:self.numberArray2.count;
+        }
+        else
+            return self.numberArray2.count;
+       
     }else
         return self.numberArray1.count;
 }
